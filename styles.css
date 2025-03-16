@@ -16,7 +16,7 @@ header {
     color: white;
 }
 
-div {
+div#nav {
     order: 2;
     background-color: #003366;
     padding: 10px;
@@ -149,25 +149,22 @@ img#quizBanner {
     border-radius: 10px;
 }
 
-.quizDetails {
+#quizDetails {
     order: 2;
     background-color: lightblue;
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: 5px;
+    margin-bottom: 10px;
     margin-right: 250px;
     margin-left: 250px;
     padding: 10px;
     text-align: center;
 }
 
-h2#courseName {
-    padding-top: 30px;
-    margin-top: 5px;
+.quizDetails {
+    background-color: lightblue;
 }
 
 p#quizTimer {
-    padding-bottom: 30px;
-    margin-bottom: 10px;
     font-weight: 700;
     font-style: italic;
 }

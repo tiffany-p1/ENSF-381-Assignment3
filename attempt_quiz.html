@@ -10,7 +10,7 @@
             <h1>LMS - Learning Management System</h1>
         </header>
         <h2 id="attemptQuizHeader">LMS - Attempt Quiz</h2>
-        <div>
+        <div id="nav">
             <nav>
                 <a href="index.html">Homepage</a>  
                 <a href="course_view.html">Courses</a>
@@ -18,12 +18,14 @@
         </div>
         <main id="quiz">
             <img id="quizBanner" width=100% height=100% src="banner.jpg">
-            <h2 class="quizDetails" id="courseName">Course Name: Web Development</h2>
-            <h2 class="quizDetails">Course Code: ENSF381</h2>
-            <p class="quizDetails">Topic: HTML Basics</p>
-            <p class="quizDetails">Deadline: 11:59PM, February 7th, 2025</p>
-            <p class="quizDetails" id="attempts">Attempts Allowed: 1</p>
-            <p class="quizDetails" id="quizTimer"></p>
+            <div id="quizDetails">
+                <h2 class="quizDetails" id="courseName">Course Name: Web Development</h2>
+                <h2 class="quizDetails">Course Code: ENSF381</h2>
+                <p class="quizDetails">Topic: HTML Basics</p>
+                <p class="quizDetails">Deadline: 11:59PM, February 7th, 2025</p>
+                <p class="quizDetails" id="attempts">Attempts Allowed: 1</p>
+                <p class="quizDetails" id="quizTimer"></p>
+            </div>
             <script>
                 var min = 10;
                 var displayMin = "";
@@ -31,7 +33,7 @@
                 var displaySec = ""
                 var quizTimer = document.getElementById('quizTimer');
                 quizTimer.textContent = "Time Remaining: 10:00";
-                //var timerInterval = setInterval(updateTimer, 1000);
+                var timerInterval = setInterval(updateTimer, 1000);   //MUST UNCOMMENT BEFORE SUBMIT
                 function updateTimer() {
                     if (sec == 0) {
                         min--;
@@ -76,7 +78,17 @@
                     var q1Ans3 = document.getElementById("q1-answer3").checked;
                     if (!q1Ans1 && !q1Ans2 && !q1Ans3) {
                         alert("Question 1 has not been answered.");
+                    } else if (!document.getElementById("q1-answer1").disabled){
+                        if(confirm("Are you sure you want to submit?\nYou will not be able to change your answer after submitting.")) {
+                            document.getElementById("q1-answer1").disabled = true;
+                            document.getElementById("q1-answer2").disabled = true;
+                            document.getElementById("q1-answer3").disabled = true;
+                        }
                     }
+                    if (document.getElementById("q1-answer1").disabled) {
+                        alert("Question 1 has been submitted.");
+                    }
+                    displayScore();
                 });
             </script>
 
@@ -96,14 +108,42 @@
                     var q2Ans2 = document.getElementById("q2-answer2").checked;
                     if (!q2Ans1 && !q2Ans2) {
                         alert("Question 2 has not been answered.");
+                    } else if (!document.getElementById("q2-answer1").disabled){
+                        if(confirm("Are you sure you want to submit?\nYou will not be able to change your answer after submitting.")) {
+                            document.getElementById("q2-answer1").disabled = true;
+                            document.getElementById("q2-answer2").disabled = true;
+                        }
                     }
+                    if (document.getElementById("q2-answer1").disabled) {
+                        alert("Question 2 has been submitted.");
+                    }
+                    displayScore();
                 });
+            </script>
+            <script>
+                function displayScore() {
+                    score = 0;
+                    if (document.getElementById("q1-answer2").checked) score += 50;
+                    if (document.getElementById("q2-answer1").checked) score += 25;
+                    if (document.getElementById("q2-answer2").checked) score += 25;
+                    if (document.getElementById("q1-answer1").disabled && document.getElementById("q2-answer1").disabled) {
+                        clearInterval(timerInterval);
+                        var finalScore = document.createElement("p");
+                        finalScore.id = "quizScore";
+                        finalScore.className = "quizDetails";
+                        finalScore.textContent = "Final quiz score: " + score + "/100";
+                        finalScore.style.fontWeight = 800;
+                        finalScore.style.textDecoration = "underline";
+                        var quizDetails = document.getElementById("quizDetails");
+                        quizDetails.appendChild(finalScore);
+                    }
+                }
             </script>
 
             <form id="finishQuiz">
                 <a href="leaderboard.html"><button type="button">Finish Quiz</button></a>
             </form>
         </main>
-        <footer><p>&copy 2025 LMS. All rights reserved.</p></footer>
+        <footer><p>&copy; 2025 LMS. All rights reserved.</p></footer>
     </body>
 </html>
