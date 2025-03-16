@@ -69,7 +69,7 @@
             }
 
             if (!/^\S+@[a-zA-Z0-9.-]+\.(com|net|io)$/.test(email)) {
-                errors.append("Email must be a valid format (username@example.com) with domains .com, .net, or .io.");
+                errors.push("Email must be a valid format (username@example.com) with domains .com, .net, or .io.");
             }
 
             const errorbox = document.getElementById('errorbox');
