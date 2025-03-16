@@ -25,35 +25,35 @@
             <p class="quizDetails" id="attempts">Attempts Allowed: 1</p>
             <p class="quizDetails" id="quizTimer"></p>
             <script>
-                var startMin = 10;
+                var min = 10;
                 var displayMin = "";
                 var sec = 0;
                 var displaySec = ""
                 var quizTimer = document.getElementById('quizTimer');
-                quizTimer.textContent = "Time Remaining: " + startMin + ":" + "00";
+                quizTimer.textContent = "Time Remaining: 10:00";
                 //var timerInterval = setInterval(updateTimer, 1000);
                 function updateTimer() {
                     if (sec == 0) {
-                        startMin--;
+                        min--;
                         sec = 59;
                     } else {
                         sec--;
                     }
-                    if (startMin < 10) {
-                        displayMin = "0"; 
+                    if (min < 10) {
+                        displayMin = "0" + min; 
                     } else {
-                        displayMin = "";
+                        displayMin = min;
                     }
                     if (sec < 10) {
-                        displaySec = "0";
+                        displaySec = "0" + sec;
                     } else {
-                        displaySec = "";
+                        displaySec = sec;
                     }
-                    if (startMin == 0 && sec == 0) {
+                    if (min == 0 && sec == 0) {
                         clearInterval(timerInterval);
                         window.location.href = "leaderboard.html";
                     }
-                    quizTimer.textContent = "Time Remaining: " + displayMin + startMin + ":" + displaySec + sec;
+                    quizTimer.textContent = "Time Remaining: " + displayMin + ":" + displaySec;
                 }
             </script>
 
