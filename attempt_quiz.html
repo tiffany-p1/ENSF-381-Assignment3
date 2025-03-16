@@ -68,6 +68,17 @@
                 <label class="q1-3" for="q1-answer3">Home Tool Markup Language</label>
                 <button type="button" class="submitQuizQuestion" id="submitQ1">Submit Answer</button>
             </form>
+            <script>
+                var q1Submit = document.getElementById("submitQ1");
+                q1Submit.addEventListener('click', () => {
+                    var q1Ans1 = document.getElementById("q1-answer1").checked;
+                    var q1Ans2 = document.getElementById("q1-answer2").checked;
+                    var q1Ans3 = document.getElementById("q1-answer3").checked;
+                    if (!q1Ans1 && !q1Ans2 && !q1Ans3) {
+                        alert("Question 1 has not been answered.");
+                    }
+                });
+            </script>
 
             <h3 class="q2">Question 2</h3>
             <p class="q2">Which of the following are HTML elements? (select all that apply)</p>
@@ -78,6 +89,17 @@
                 <label class="q2-2" for="q2-answer2">&lt;span&gt;</label>
                 <button type="button" class="submitQuizQuestion" id="submitQ2">Submit Answer</button>
             </form>
+            <script>
+                var q2Submit = document.getElementById("submitQ2");
+                q2Submit.addEventListener('click', () => {
+                    var q2Ans1 = document.getElementById("q2-answer1").checked;
+                    var q2Ans2 = document.getElementById("q2-answer2").checked;
+                    if (!q2Ans1 && !q2Ans2) {
+                        alert("Question 2 has not been answered.");
+                    }
+                });
+            </script>
+
             <form id="finishQuiz">
                 <a href="leaderboard.html"><button type="button">Finish Quiz</button></a>
             </form>
