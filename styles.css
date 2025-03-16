@@ -165,9 +165,11 @@ h2#courseName {
     margin-top: 5px;
 }
 
-p#attempts {
+p#quizTimer {
     padding-bottom: 30px;
     margin-bottom: 10px;
+    font-weight: 700;
+    font-style: italic;
 }
 
 .q1 {
