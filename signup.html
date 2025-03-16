@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - LMS</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <header>
+        <img src="logo.jpg" alt="LMS Logo" style="width: 100px; height: 100px;">
+        <h1>LMS - Learning Management System</h1>
+    </header>
+    <nav>
+        <a href="index.html">Homepage</a>
+    </nav>
+
+    <main class="signup">
+        <h2>Signup</h2>
+        <form id="signupForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required><br><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required><br><br>
+
+            <button type="submit">Sign Up</button>          
+        </form> 
+      
+        <div id="errorbox" class="errorbox"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 LMS. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+            const email = document.getElementById('email').value;
+
+            let errors = [];
+
+            if (!/^[A-Za-z][A-Za-z0-9_-]{2,19}$/.test(username)) {
+                errors.push("Username must be 3-20 characters, start with a letter, and contain only letters, numbers, hyphens, or underscores.");
+            }
+
+            if (password.length < 8 || 
+                !/[a-z]/.test(password) || 
+                !/[A-Z]/.test(password) || 
+                !/[0-9]/.test(password) || 
+                !/[!@#$%^&*()\-_=+\[\]{}|;:'\",.<>?/`~]/.test(password) ||
+                /\s/.test(password)) {
+                errors.push("Password must be at least 8 characters, include uppercase, lowercase, number, special character, and contain no spaces.");
+            }
+
+            if (password !== confirmPassword) {
+                errors.push("Passwords do not match.");
+            }
+
+            if (!/^\S+@[a-zA-Z0-9.-]+\.(com|net|io)$/.test(email)) {
+                errors.append("Email must be a valid format (username@example.com) with domains .com, .net, or .io.");
+            }
+
+            const errorbox = document.getElementById('errorbox');
+            
+            if (errors.length > 0) {
+                errorbox.innerHTML = errors.join('<br>');
+                errorbox.style.display = 'block';
+            } else {
+                errorbox.style.display = 'none';
+                alert('Signup successful! Redirecting to Login page...');
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>
