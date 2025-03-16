@@ -49,10 +49,10 @@
             const confirmPassword = document.getElementById('confirm_password').value;
             const email = document.getElementById('email').value;
 
-            let errors = [];
+            let errorLog = [];
 
             if (!/^[A-Za-z][A-Za-z0-9_-]{2,19}$/.test(username)) {
-                errors.push("Username must be 3-20 characters, start with a letter, and contain only letters, numbers, hyphens, or underscores.");
+                errorLog.push("Username must be 3-20 characters, start with a letter, and contain only letters, numbers, hyphens, or underscores.");
             }
 
             if (password.length < 8 || 
@@ -61,21 +61,21 @@
                 !/[0-9]/.test(password) || 
                 !/[!@#$%^&*()\-_=+\[\]{}|;:'\",.<>?/`~]/.test(password) ||
                 /\s/.test(password)) {
-                errors.push("Password must be at least 8 characters, include uppercase, lowercase, number, special character, and contain no spaces.");
+                errorLog.push("Password must be at least 8 characters, include uppercase, lowercase, number, special character, and contain no spaces.");
             }
 
             if (password !== confirmPassword) {
-                errors.push("Passwords do not match.");
+                errorLog.push("Passwords do not match.");
             }
 
             if (!/^\S+@[a-zA-Z0-9.-]+\.(com|net|io)$/.test(email)) {
-                errors.push("Email must be a valid format (username@example.com) with domains .com, .net, or .io.");
+                errorLog.push("Email must be a valid format (username@example.com) with domains .com, .net, or .io.");
             }
 
             const errorbox = document.getElementById('errorbox');
             
-            if (errors.length > 0) {
-                errorbox.innerHTML = errors.join('<br>');
+            if (errorLog.length > 0) {
+                errorbox.innerHTML = errorLog.join('<br>');
                 errorbox.style.display = 'block';
             } else {
                 errorbox.style.display = 'none';

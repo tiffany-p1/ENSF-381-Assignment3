@@ -116,7 +116,7 @@ select{
     background-color: lightyellow;
     border-radius: 5px;
     padding: 5px;
-}
+} 
 
 table {
     margin-top: 20px;
@@ -130,6 +130,10 @@ table[class="cv"] td {
     background-color: #e6f2ff;
     border-radius: 10px;
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+table[class="cv"] td:hover{
+    background-color: #ffffff;
 }
 
 table[class="cv"] td img {
