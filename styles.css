@@ -94,12 +94,12 @@ main button:hover {
     background-color: #006600;
 }
 
-main a[href="#"]{
+main a[href="#"], main a[href="signup.html"]{
     color: #004080;
     text-decoration: none;
 }
 
-main a[href="#"]:hover {
+main a[href="#"]:hover, main a[href="signup.html"]:hover {
     text-decoration: underline;
 }
 
@@ -182,7 +182,8 @@ main[class="attemptquiz"] div[class="quizdetails"] {
 }
 
 main[class="attemptquiz"] div[class="Qs"] {
-    margin: 0 550px 0 550px;
+    width: 250px;
+    margin: 0 490px 0 490px;
     background-color: #cacaca;
     padding: 20px;
     text-align: left;

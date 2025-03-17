@@ -91,7 +91,7 @@
                 <tr>
                     <td id="dataScience" class="dataScience">
                         <div>
-                            <img src="course2.jpg" alt="Course 2">
+                            <img src="course2.jpg" alt="Course 2" id="dataScienceImg">
                             <p>Course Name: Data Science</p>
                             <p>Course Code: DS102</p>
                             <button class="accept" onclick="acceptCourse('dataScience')">Accept</button>
@@ -100,7 +100,7 @@
                     </td>
                     <td id="machineLearning" class="machineLearning">
                         <div>
-                            <img src="course2.jpg" alt="Course 2">
+                            <img src="course2.jpg" alt="Course 2" id="machineLearningImg">
                             <p>Course Name: Machine Learning</p>
                             <p>Course Code: ML105</p>
                             <button class="accept" onclick="acceptCourse('machineLearning')">Accept</button>
@@ -119,6 +119,16 @@
     <script>
         function acceptCourse(tdId) {
             var pendingTd = document.getElementById(tdId);
+            var pendingTdImg = document.getElementById(tdId + "Img");
+            pendingTdImg.src = "course1.jpg";
+
+            var quizLink = document.createElement('a');
+            quizLink.href = "attempt_quiz.html";
+            quizLink.textContent = "Attempt Quiz";
+            console.log(document.getElementById(tdId).children);
+            pendingTdDiv =  document.getElementById(tdId).children[0];
+            pendingTdDiv.appendChild(quizLink);
+            
             var enrolledTable = document.getElementById("enrolledTable");
             var rows = enrolledTable.getElementsByTagName("tr");
             var lastRow = rows[rows.length - 1]; 
