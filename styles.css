@@ -93,12 +93,12 @@ main button:hover {
     background-color: #006600;
 }
 
-main a[href="#"]{
+main a[href="#"], main a[href="signup.html"]{
     color: #004080;
     text-decoration: none;
 }
 
-main a[href="#"]:hover {
+main a[href="#"]:hover, main a[href="signup.html"]:hover {
     text-decoration: underline;
 }
 
