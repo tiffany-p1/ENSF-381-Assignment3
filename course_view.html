@@ -126,9 +126,9 @@
             quizLink.href = "attempt_quiz.html";
             quizLink.textContent = "Attempt Quiz";
             console.log(document.getElementById(tdId).children);
-            pendingTdDiv =  document.getElementById(tdId).children[0];
+            pendingTdDiv = document.getElementById(tdId).children[0];
             pendingTdDiv.appendChild(quizLink);
-            
+
             var enrolledTable = document.getElementById("enrolledTable");
             var rows = enrolledTable.getElementsByTagName("tr");
             var lastRow = rows[rows.length - 1]; 
