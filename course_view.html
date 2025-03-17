@@ -31,7 +31,7 @@
             <!-- Display Course 1, 2, and 3 in the same line -->
             <h2>Enrolled Courses</h2>
             <hr>
-            <table class="cv">
+            <table class="cv" id="enrolledTable">
 				<tr>
 					<td>
 						<div>
@@ -84,40 +84,63 @@
         </div>
         <br>
         <br>
+
         <section class="Pending">
-			<!-- Courses in which the student is enrolled -->
-            <!-- Display Course 1, 2, and 3 in the same line -->
             <h2>Pending Invitations</h2>
-            <hr>
             <table class="cv">
-				<tr>
-					<td>
+                <tr>
+                    <td id="dataScience" class="dataScience">
                         <div>
                             <img src="course2.jpg" alt="Course 2">
                             <p>Course Name: Data Science</p>
                             <p>Course Code: DS102</p>
-                            <button class="accept">Accept</button>
-                            <button class="decline">Decline</button>
+                            <button class="accept" onclick="acceptCourse('dataScience')">Accept</button>
+                            <button class="decline"  onclick="declineCourse('dataScience')">Decline</button>
                         </div>
-                    </td> 
-                    <td>
+                    </td>
+                    <td id="machineLearning" class="machineLearning">
                         <div>
                             <img src="course2.jpg" alt="Course 2">
                             <p>Course Name: Machine Learning</p>
                             <p>Course Code: ML105</p>
-                            <button class="accept">Accept</button>
-                            <button class="decline">Decline</button>
+                            <button class="accept" onclick="acceptCourse('machineLearning')">Accept</button>
+                            <button class="decline" onclick="declineCourse('machineLearning')">Decline</button>
                         </div>
-                    </td> 
+                    </td>          
                 </tr>
             </table>
         </section>
     </main>
+
     <footer>
         <p>&copy; 2025 LMS. All rights reserved.</p>
     </footer>
+
     <script>
-        
+        function acceptCourse(tdId) {
+            var pendingTd = document.getElementById(tdId);
+            var enrolledTable = document.getElementById("enrolledTable");
+            var rows = enrolledTable.getElementsByTagName("tr");
+            var lastRow = rows[rows.length - 1]; 
+
+            if (lastRow.children.length < 3) {
+                lastRow.appendChild(pendingTd); 
+            } else {
+                var newRow = document.createElement("tr");
+                newRow.appendChild(pendingTd);
+                enrolledTable.appendChild(newRow);
+            }
+            var buttons = pendingTd.getElementsByTagName("button");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].style.display = "none"; 
+                buttons[i].disabled = true; 
+            }
+        }
+
+        function declineCourse(courseId) {
+            var courseTd = document.getElementById(courseId);
+            courseTd.style.display = "none";
+        }
     </script>
 </body>
 </html>
