@@ -79,6 +79,7 @@ input[type="text"], input[type="password"] {
 }
 
 /* Buttons */
+
 main button {
     background-color: #008000;
     color: white;
@@ -295,7 +296,7 @@ input[type="text"], input[type="password"] {
 }
 
 /* Buttons */
-main button {
+main button[type="submit"] {
     background-color: #4CAF50;
     color: white;
     padding: 10px;
@@ -306,7 +307,7 @@ main button {
     font-size: 16px;
 }
 
-main button:hover {
+main button[type="submit"]:hover{
     background-color: #45A049;
     opacity: 1.0;
 }
