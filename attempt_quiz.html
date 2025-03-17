@@ -26,6 +26,42 @@
             <p>Deadline: 11:59 PM, February 10, 2025</p>
             <p>Attempts Allowed: 1</p>
         </div>
+        <script>
+            var min = 10;
+            var displayMin = "";
+            var sec = 0;
+            var displaySec = ""
+            var quizTimer = document.createElement('p');
+            quizTimer.textContent = "Time Remaining: 10:00";
+            quizTimer.style.fontWeight = 700;
+            quizTimer.style.fontStyle = "italic";
+            var quizDetails = document.getElementsByClassName("quizdetails")[0];
+            quizDetails.appendChild(quizTimer);      
+            var timerInterval = setInterval(updateTimer, 1000);   //MUST UNCOMMENT BEFORE SUBMIT
+            function updateTimer() {
+                if (sec == 0) {
+                    min--;
+                    sec = 59;
+                } else {
+                    sec--;
+                }
+                if (min < 10) {
+                    displayMin = "0" + min; 
+                } else {
+                    displayMin = min;
+                }
+                if (sec < 10) {
+                    displaySec = "0" + sec;
+                } else {
+                    displaySec = sec;
+                }
+                if (min == 0 && sec == 0) {
+                    clearInterval(timerInterval);
+                    window.location.href = "leaderboard.html";
+                }
+                quizTimer.textContent = "Time Remaining: " + displayMin + ":" + displaySec;
+            }
+        </script>
         
         <h3>Question 1</h3>
         <p>What does HTML stand for?</p>
@@ -36,8 +72,46 @@
             <label for="q1b">Home Tool Markup Language</label><br>
         </div>
         <br>
-        <button class="ans">Submit Answer</button>
-        
+        <button class="ans" id="submitQ1">Submit Answer</button>
+        <script>
+            var submitQ1 = document.getElementById("submitQ1");
+            submitQ1.addEventListener('click', () => {
+                var q1Ans1 = document.getElementById("q1a").checked;
+                var q1Ans2 = document.getElementById("q1b").checked;
+                if (!q1Ans1 && !q1Ans2) {
+                    alert("Question 1 has not been answered.");
+                } else if (!document.getElementById("q1a").disabled){
+                    if(confirm("Are you sure you want to submit?\nYou will not be able to change your answer after submitting.")) {
+                        document.getElementById("q1a").disabled = true;
+                        document.getElementById("q1b").disabled = true;
+                    }
+                }
+                if (document.getElementById("q1a").disabled) {
+                    alert("Question 1 has been submitted.");
+                }
+                displayScore();
+            });
+        </script>
+        <script>
+            function displayScore() {
+                score = 0;
+                if (document.getElementById("q1a").checked) score += 50;
+                if (document.getElementById("q2a").checked) score += 25;
+                if (document.getElementById("q2b").checked) score += 25;
+                if (document.getElementById("q1a").disabled && document.getElementById("q2a").disabled) {
+                    clearInterval(timerInterval);
+                    var finalScore = document.createElement("p");
+                    finalScore.id = "quizScore";
+                    finalScore.className = "quizDetails";
+                    finalScore.textContent = "Final quiz score: " + score + "/100";
+                    finalScore.style.fontWeight = 800;
+                    finalScore.style.textDecoration = "underline";
+                    var quizDetails = document.getElementById("quizDetails");
+                    quizDetails.appendChild(finalScore);
+                }
+            }
+        </script>
+
         <h3>Question 2</h3>
         <p>Which of the following are HTML elements? (Select all that apply)</p>
         <div class="Qs">
@@ -47,12 +121,57 @@
         <label for="q2b">&lt;span&gt;</label><br>
         </div>
         <br>
-        <button class="ans">Submit Answer</button>
-        
+        <button class="ans" id="submitQ2">Submit Answer</button>
+        <script>
+            var submitQ2 = document.getElementById("submitQ2");
+            submitQ2.addEventListener('click', () => {
+                var q2Ans1 = document.getElementById("q2a").checked;
+                var q2Ans2 = document.getElementById("q2b").checked;
+                if (!q2Ans1 && !q2Ans2) {
+                    alert("Question 2 has not been answered.");
+                } else if (!document.getElementById("q2a").disabled){
+                    if(confirm("Are you sure you want to submit?\nYou will not be able to change your answer after submitting.")) {
+                        document.getElementById("q2a").disabled = true;
+                        document.getElementById("q2b").disabled = true;
+                    }
+                }
+                if (document.getElementById("q2a").disabled) {
+                    alert("Question 2 has been submitted.");
+                }
+                displayScore();
+            });
+        </script>
+        <script>
+            function displayScore() {
+                score = 0;
+                if (document.getElementById("q1a").checked) score += 50;
+                if (document.getElementById("q2a").checked) score += 25;
+                if (document.getElementById("q2b").checked) score += 25;
+                if (document.getElementById("q1a").disabled && document.getElementById("q2a").disabled) {
+                    clearInterval(timerInterval);
+                    var finalScore = document.createElement("p");
+                    finalScore.id = "quizScore";
+                    finalScore.className = "quizDetails";
+                    finalScore.textContent = "Final quiz score: " + score + "/100";
+                    finalScore.style.fontWeight = 800;
+                    finalScore.style.textDecoration = "underline";
+                    quizDetails.appendChild(finalScore);
+                }
+            }
+        </script>
         <br><br>
-        <a href="leaderboard.html">
-            <button class="FinQz">Finish Quiz</button>
-        </a>
+        <button class="FinQz">Finish Quiz</button>
+        <script>
+            var finishQuiz = document.getElementsByClassName("FinQz")[0];
+            finishQuiz.addEventListener('click', () => {
+                if (document.getElementById("q1a").disabled && document.getElementById("q2a").disabled) {
+                    window.location.href = "leaderboard.html";
+                }
+                else {
+                    alert("Unable to finish quiz. Quiz has not been completed.");
+                }
+            })
+        </script>
     </main>
     <footer>
         <p>&copy; 2025 LMS. All rights reserved.</p>
