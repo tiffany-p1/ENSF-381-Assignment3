@@ -160,9 +160,18 @@
             }
         </script>
         <br><br>
-        <a href="leaderboard.html">
-            <button class="FinQz">Finish Quiz</button>
-        </a>
+        <button class="FinQz">Finish Quiz</button>
+        <script>
+            var finishQuiz = document.getElementsByClassName("FinQz")[0];
+            finishQuiz.addEventListener('click', () => {
+                if (document.getElementById("q1a").disabled && document.getElementById("q2a").disabled) {
+                    window.location.href = "leaderboard.html";
+                }
+                else {
+                    alert("Unable to finish quiz. Quiz has not been completed.");
+                }
+            })
+        </script>
     </main>
     <footer>
         <p>&copy; 2025 LMS. All rights reserved.</p>
